@@ -1,0 +1,52 @@
+﻿@page
+@model NicasourseAssesment.Pages.Files.ListModel
+@{
+}
+
+<h1 class="mb-3">Your list of files</h1>
+
+@if (Model.IsLoading)
+{
+    <div class="text-center">
+        <div class="spinner-border text-primary"></div>
+        <span class="sr-only">Loading...</span>
+    </div>
+}
+else
+{
+    if (Model.Files.Count == 0)
+    {
+        <h1>You don't have any files yet, <a>press here to add one</a></h1>
+    }
+    else
+    {
+        if (Model.Files.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th>File name</th>
+                    <th>Description</th>
+                    <th>Download</th>
+                    <th>Edit</th>
+                </tr> 
+                <tbody>
+                    @foreach (var file in Model.Files)
+                    {
+                        <tr>
+                            <td>@file.FileName</td>
+                            <td>@file.Description</td>
+                            <td>
+                                <a download href="@Url.Page("list", "DownloadFile", new { fileName = file.FileName})" class="btn btn-dark">Download</a>
+                            </td>
+                            <td><a href="/files/edit/@file.id" class="btn btn-dark">Edit</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>You don't have any files saved yet</p>
+        }
+    }
+}

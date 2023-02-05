@@ -15,7 +15,7 @@ namespace Infrastructure
                 clientBuilder.AddBlobServiceClient(config["BlobStorageConfig:Connection"]);
             });
 
-            services.AddTransient<ICosmosDBService, CosmosDBService>();
+            services.AddTransient<IFileDBService, FileDBService>();
             services.AddScoped<IBlobStorageService, BlobStorageService>();
 
             return services;

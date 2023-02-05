@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NicasourseAssesment", "NicasourseAssesment\NicasourseAssesment.csproj", "{2D3B36D6-EB69-480A-9844-225033DF5997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{C677E480-828B-4C61-9578-E1C65210B8FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{C677E480-828B-4C61-9578-E1C65210B8FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{B6E3720F-7143-4D27-B311-91B579C23036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{B6E3720F-7143-4D27-B311-91B579C23036}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{96439D0B-5EE1-45D7-B743-8B1053563522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{96439D0B-5EE1-45D7-B743-8B1053563522}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

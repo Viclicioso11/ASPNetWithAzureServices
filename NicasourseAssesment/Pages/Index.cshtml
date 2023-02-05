@@ -5,6 +5,46 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">This is the assesment principal page</h1>
+    @if (Model.IsLoading) {
+        <h1>This is loading</h1>
+    }
+    else
+    {
+        if (Model.Files.Count == 0)
+        {
+            <h1>You don't have any files yet, <a>press here to add one</a></h1>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        File name
+                    </th>
+                    <th>
+                        Is Available
+                    </th>
+                    <th>
+                        Download
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                </tr>
+                <tbody>
+                    @foreach (var child in Model.Files)
+                    {
+                        <tr>
+                        <td>
+                            @child.FileName
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
