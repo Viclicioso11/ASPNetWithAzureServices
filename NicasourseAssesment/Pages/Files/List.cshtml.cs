@@ -7,13 +7,11 @@ namespace NicasourseAssesment.Pages.Files
 {
     public class ListModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IFileDBService _dbService;
         private readonly IBlobStorageService _blobStorageService;
 
-        public ListModel(ILogger<IndexModel> logger, IFileDBService dbService, IBlobStorageService blobStorageService)
+        public ListModel(IFileDBService dbService, IBlobStorageService blobStorageService)
         {
-            _logger = logger;
             _dbService = dbService;
             _blobStorageService = blobStorageService;
         }
@@ -31,17 +29,15 @@ namespace NicasourseAssesment.Pages.Files
             Files = files;
         }
 
-        public async Task<ActionResult> OnGetDownloadFile(string fileName)
+        public async Task<ActionResult> OnGetDownloadFile(string fileName, string filePath)
         {
-            var file = await _blobStorageService.GetFileByName(fileName);
+            var file = await _blobStorageService.GetFileByName(filePath);
 
             var fileMemoryStream = new MemoryStream();
 
             await file!.CopyToAsync(fileMemoryStream);
 
-            var finalName = fileName.Split("/")[2];
-
-            return File(fileMemoryStream.ToArray(), "application/octet-stream", finalName);
+            return File(fileMemoryStream.ToArray(), "application/octet-stream", fileName);
         }
     }
 }

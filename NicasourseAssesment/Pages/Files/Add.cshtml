@@ -16,18 +16,23 @@
         </div>
     }
 
-    <div class="mb-3">
-        <label class="form-label">Description</label>
-        <input type="text" name="Description" class="form-control" asp-for="AddFileRequest.Description"/>
-    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" name="AddFileRequest.Description" class="form-control" asp-for="AddFileRequest.Description" />
+            <span class="text-danger" asp-validation-for="AddFileRequest.Description"></span>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">File</label>
-        <input type="file" name="FormFile" class="form-control" asp-for="AddFileRequest.FormFile"/>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">File</label>
+            <input type="file" name="AddFileRequest.FormFile" class="form-control" asp-for="AddFileRequest.FormFile" />
+            <span class="text-danger" asp-validation-for="AddFileRequest.FormFile"></span>
+        </div>
 
-    <div class="mb-3">
-        <button tyoe="submit" class="btn btn-primary">Save file</button>
+        <div class="mb-3">
+            <button tyoe="submit" class="btn btn-primary">Save file</button>
+        </div>
     </div>
 </form>
 

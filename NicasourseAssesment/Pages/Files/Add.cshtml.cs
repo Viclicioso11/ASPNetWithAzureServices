@@ -1,8 +1,8 @@
 using Application.Common.Interfaces;
-using Application.ViewModels;
 using Domain.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NicasourseAssesment.Models.ViewModels;
 
 namespace NicasourseAssesment.Pages.Files
 {
@@ -28,6 +28,11 @@ namespace NicasourseAssesment.Pages.Files
 
         public async Task OnPost() 
         {
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
+
             IsLoading = true;
             var id = Guid.NewGuid().ToString();
             var fileName = AddFileRequest.FormFile!.FileName;
@@ -60,7 +65,8 @@ namespace NicasourseAssesment.Pages.Files
                 id = id,
                 UserId = userId,
                 Description = AddFileRequest.Description,
-                FileName = $"{userId}/{id}/{fileName}"
+                FileName = $"{fileName}",
+                FilePath = $"{userId}/{id}/{fileName}"
             };
 
             var wasSaved = await _dbService.CreateFile(fileMetadata);

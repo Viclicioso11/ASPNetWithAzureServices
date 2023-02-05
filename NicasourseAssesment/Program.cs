@@ -28,7 +28,12 @@ builder.Services.AddMvc(options =>
 {
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     options.Filters.Add(new AuthorizeFilter(policy));
-}).AddMicrosoftIdentityUI();
+})
+.AddRazorPagesOptions(options =>
+{
+    options.Conventions.AddPageRoute("/Files/List", "");
+})
+.AddMicrosoftIdentityUI();
 
 var app = builder.Build();
 

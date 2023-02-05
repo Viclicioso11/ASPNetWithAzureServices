@@ -36,7 +36,7 @@ else
                             <td>@file.FileName</td>
                             <td>@file.Description</td>
                             <td>
-                                <a download href="@Url.Page("list", "DownloadFile", new { fileName = file.FileName})" class="btn btn-dark">Download</a>
+                                <a download href="@Url.Page("list", "DownloadFile", new { fileName = file.FileName, filePath = file.FilePath })" class="btn btn-dark">Download</a>
                             </td>
                             <td><a href="/files/edit/@file.id" class="btn btn-dark">Edit</a></td>
                         </tr>

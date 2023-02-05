@@ -1,8 +1,7 @@
 using Application.Common.Interfaces;
-using Application.ViewModels;
-using Domain.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NicasourseAssesment.Models.ViewModels;
 
 namespace NicasourseAssesment.Pages.Files
 {

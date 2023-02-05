@@ -48,6 +48,7 @@ namespace Infrastructure.Services
                 "f.id, " +
                 "f.UserId, " +
                 "f.FileName, " +
+                "f.FilePath, " +
                 "f.Description " +
                 "FROM FileMetadata f " +
                 "WHERE f.id = @fileId";
@@ -81,6 +82,7 @@ namespace Infrastructure.Services
                 "f.id, " +
                 "f.UserId, " +
                 "f.FileName, " +
+                "f.FilePath, " +
                 "f.Description " +
                 "FROM FileMetadata f " +
                 "WHERE f.UserId = @userId";
