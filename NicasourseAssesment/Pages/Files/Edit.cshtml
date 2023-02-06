@@ -18,7 +18,7 @@
 
     <div class="mb-3">
         <label class="form-label">Id</label>
-        <input type="text" name="id" class="form-control" asp-for="EditFileViewModel.Id" readonly/>
+        <input type="text" name="EditFileViewModel.Id" class="form-control" asp-for="EditFileViewModel.Id" readonly />
     </div>
 
     <div class="mb-3">
@@ -28,6 +28,7 @@
     </div>
 
     <div class="mb-3">
-        <button tyoe="submit" class="btn btn-primary">Update file</button>
+        <button type="submit" class="btn btn-primary">Update file</button>
+        <a href="/files/list" class="btn btn-dark">Back</a>
     </div>
 </form>

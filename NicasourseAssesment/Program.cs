@@ -1,20 +1,27 @@
 using Infrastructure;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using NicasourseAssesment.Data;
+using Microsoft.IdentityModel.Logging;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("NicasourseAssesmentContextConnection") ?? throw new InvalidOperationException("Connection string 'NicasourseAssesmentContextConnection' not found.");
 
-builder.Services.AddDbContext<NicasourseAssesmentContext>(options =>
-    options.UseSqlServer(connectionString));
+ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<NicasourseAssesmentContext>();
+builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("ActiveDirectory"));
+
+builder.Services.AddAuthorization(options =>
+{
+    // By default, all incoming requests will be authorized according to 
+    // the default policy
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+
+builder.Services.AddRazorPages()
+.AddMvcOptions(options => { })
+.AddMicrosoftIdentityUI();
 
 var config = builder.Configuration;
 // Add services to the container.
@@ -22,20 +29,15 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddInfrastructureDependencyInjection(config);
 
-builder.Services.AddMicrosoftIdentityWebAppAuthentication(config, "ActiveDirectory");
-
-builder.Services.AddMvc(options =>
-{
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-})
+builder.Services.AddMvc()
 .AddRazorPagesOptions(options =>
 {
     options.Conventions.AddPageRoute("/Files/List", "");
-})
-.AddMicrosoftIdentityUI();
+});
 
 var app = builder.Build();
+
+IdentityModelEventSource.ShowPII = true;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -54,5 +56,7 @@ app.UseAuthentication();;
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();

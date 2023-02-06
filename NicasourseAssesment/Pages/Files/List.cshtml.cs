@@ -22,7 +22,8 @@ namespace NicasourseAssesment.Pages.Files
 
         public async Task OnGet()
         {
-            var files = await _dbService.GetFilesByUserId("victorabud11@gmail.com");
+            var userId = User.Claims.First(cl => cl.Type.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")).Value;
+            var files = await _dbService.GetFilesByUserId(userId);
 
             IsLoading = false;
 

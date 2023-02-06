@@ -3,7 +3,10 @@
 @{
 }
 
-<h1 class="mb-3">Your list of files</h1>
+<div class="mb-3">
+    <h1 class="mb-3">Your list of files</h1>
+    <a href="/files/add" class="btn btn-dark">Add new file</a>
+</div>
 
 @if (Model.IsLoading)
 {
@@ -43,10 +46,6 @@ else
                     }
                 </tbody>
             </table>
-        }
-        else
-        {
-            <p>You don't have any files saved yet</p>
         }
     }
 }

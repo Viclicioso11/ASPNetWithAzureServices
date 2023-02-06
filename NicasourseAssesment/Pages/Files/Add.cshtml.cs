@@ -36,7 +36,7 @@ namespace NicasourseAssesment.Pages.Files
             IsLoading = true;
             var id = Guid.NewGuid().ToString();
             var fileName = AddFileRequest.FormFile!.FileName;
-            var userId = "victorabud11@gmail.com";
+            var userId = User.Claims.First(cl => cl.Type.Equals("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")).Value; ;
 
             using (var memoryStream = new MemoryStream())
             {
